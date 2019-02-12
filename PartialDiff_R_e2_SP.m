@@ -12,7 +12,7 @@ lambdaq = linspace(0.725,0.9,200)*1e-6;
 k0 = 2*pi./lambdaq;
 omg = c*2*pi./lambdaq;
 %THETA_ext_deg= linspace(40,50,500);  %(35:.1:55)';
-THETA_ext_deg = 43.2;%
+THETA_ext_deg = 43.83;%
 theta = THETA_ext_deg*(pi/180);
 
 
@@ -109,7 +109,7 @@ for  jj =  1:size(lambdaq,2)%250 % (jj = 40,lambda=609) (jj = 250 ,lambda=1198)%
 end
 figure
 plot(lambdaq,p1_Im,'r'); hold on;plot(lambdaq,p1_re,'y')
-%figure
-%plot(lambdaq*10^9, REF,'k','linewidth',1.5); hold on
+figure
+plot(lambdaq*10^9, REF,'k','linewidth',1.5); hold on
 
    
