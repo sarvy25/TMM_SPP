@@ -36,11 +36,11 @@ rho0 = 1./(1 + a0);
 
 
 % calculatin change in the electronics occupancy
-for ii = 1: size(Te,2)
+for ii = 1: size(Te,1)
 
-    a(ii,:) = exp((E - delE)./(kb.*Te(1,ii)));
-    rho(ii,:) = 1./(1 + a(ii,:));
-    delrho(ii,:) = rho(ii,:) - rho0;  
+    a(:,ii) = exp((E - delE)./(kb.*Te(1,ii)));
+    rho(:,ii) = 1./(1 + a(:,ii));
+    delrho(:,ii) = rho(:,ii) - rho0';  
 end
 
 % ellispometry
@@ -54,10 +54,10 @@ eps = eps_r + 1i*eps_I;
 omg = (2*pi./lambda).*c;
 
 for ii = 1: size(Te,2)
-delepsI(ii,:) = (delrho(ii,:)./rho0).*eps_I;
-delchiI(ii,:) = delepsI(ii,:)./eps0;
-delchir(ii,:) = kkrebook2(omg,delchiI(ii,:),0); % using Kramers -Kronig to find the real part of change in permitivity
-delepsr(ii,:) = delchir(ii,:).*eps0;
+delepsI(:,ii) = (delrho(:,ii)./rho0').*eps_I';
+delchiI(:,ii) = delepsI(:,ii)./eps0;
+delchir(:,ii) = kkrebook2(omg,delchiI(:,ii),0); % using Kramers -Kronig to find the real part of change in permitivity
+delepsr(:,ii) = delchir(:,ii).*eps0;
 end
 % figure;
 % plot(lambda,delepsI); hold on
@@ -69,6 +69,6 @@ end
 %Rq = interp1(lambda, R,lambdaq,'nearest','extrap');
 count = 1;
 for kk = 1: size(Te,2)
-dR_R(:,count) = (1./R').*(p_re.* delepsr(kk,:) + p_Im.* delepsI(kk,:));
+dR_R(:,count) = (1./R').*(p_re'.* delepsr(kk,:) + p_Im'.* delepsI(kk,:));
 count = count + 1;
 end

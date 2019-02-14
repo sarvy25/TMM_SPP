@@ -90,13 +90,13 @@ for  jj =  1:size(lambda,2)%250 % (jj = 40,lambda=609) (jj = 250 ,lambda=1198)%1
         tp=2*q1/((emtot(1,1)+emtot(1,2)*qn)*q1+(emtot(2,1)+emtot(2,2)*qn));
         ref = rp*conj(rp);
         tra=(tp*conj(tp)/cos(theta))*en(1)*real(qn);
-        TRA(jj,1)=tra;
-        REF(jj,1)= eval(subs(ref, {er2,eI2}, {er_Au(1,jj),eI_Au(1,jj)}));
+        TRA(:,jj)=tra;
+        REF(:,jj)= eval(subs(ref, {er2,eI2}, {er_Au(1,jj),eI_Au(1,jj)}));
         
         p_er = diff(ref, er2); %taking partial derivitive wrt real permitivity (symbolic)
         p_eI = diff(ref, eI2); %taking partial derivitive wrt imaginary permitivity (symbolic)
-        p_re(1,jj) = eval(subs(p_er,{er2,eI2}, {er_Au(1,jj),eI_Au(1,jj)}));
-        p_Im(1,jj) = eval(subs(p_eI,{er2,eI2}, {er_Au(1,jj),eI_Au(1,jj)}));
+        p_re(:,jj) = eval(subs(p_er,{er2,eI2}, {er_Au(1,jj),eI_Au(1,jj)}));
+        p_Im(:,jj) = eval(subs(p_eI,{er2,eI2}, {er_Au(1,jj),eI_Au(1,jj)}));
         fprintf('%d \n', jj);
 
 end
