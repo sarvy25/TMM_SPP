@@ -59,9 +59,14 @@ delchiI(:,ii) = delepsI(:,ii)./eps0;
 delchir(:,ii) = kkrebook2(omg,delchiI(:,ii),0); % using Kramers -Kronig to find the real part of change in permitivity
 delepsr(:,ii) = delchir(:,ii).*eps0;
 end
-% figure;
-% plot(lambda,delepsI); hold on
-% plot(lambda,delepsr)
+
+%% plotting the change in real and imaginary part of permitivity
+ %figure;
+%  plot(lambda*10^9,delepsI); hold on
+%  plot(lambda*10^9,delepsr)
+%  xlabel('\lambda(nm)'); ylabel('\Delta\epsilon_{r} , \Delta\epsilon_{I}')
+%  set(gca,'fontsize',25); grid on
+
 
 
 %% with angle
