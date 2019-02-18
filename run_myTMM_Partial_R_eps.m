@@ -49,7 +49,7 @@ xlabel('Delay time(ps)'); ylabel('Te(k)'); set(gca,'fontsize',25)
     dt = tspan(2)-tspan(1);
     Te_avg = Te_crop(:,6); %Te_crop(:,6);
     %Te_avg = [700,1000];
-    for ii = 2:size(Te_avg,1)
+    for ii = 1:size(Te_avg,1)
     [dR_R(:,count)] = mydR_R_WithAngle (Te_avg(ii), p_re, p_Im, theta,REF,lambda);
     count = count+1;
     end
@@ -67,7 +67,7 @@ xlabel('Delay time(ps)'); ylabel('Te(k)'); set(gca,'fontsize',25)
     dR2 = dR_R-max(dR_R(:));
     dd = (dR2)./abs(min(dR2(:)))
     figure;
-    [C,h] = contourf(tspan(2:size(Te_avg,1))*10^12,lambda*10^9, dd,20);colormap hot;
+    [C,h] = contourf(tspan(1:size(Te_avg,1))*10^12,lambda*10^9, dd,20);colormap hot;
     h.LineWidth= 2;set ( gca, 'ydir', 'reverse' )
     axis ([0 5 720 780]);
     xlabel('time(ps)'); ylabel('\lambda(nm)')
@@ -76,12 +76,11 @@ xlabel('Delay time(ps)'); ylabel('Te(k)'); set(gca,'fontsize',25)
     
     %%
     figure; 
-    plot(tspan(1:size(Te_avg,1))*10^12, dd(109,:),'linewidth',1.5); hold on %lambda=745
-    plot(tspan(1:size(Te_avg,1))*10^12, dd(112,:),'linewidth',1.5); hold on %lambda=745
-    plot(tspan(1:size(Te_avg,1))*10^12, dd(118,:),'linewidth',1.5); hold on %lambda = 755
-    plot(tspan(1:size(Te_avg,1))*10^12, dd(124,:),'linewidth',1.5); hold on% lambda = 766
-    plot(tspan(1:size(Te_avg,1))*10^12, dd(129,:),'linewidth',1.5); hold on% lambda = 775
-    plot(tspan(1:size(Te_avg,1))*10^12, dd(131,:),'linewidth',1.5); hold on% lambda = 785
+    plot(tspan(1:size(Te_avg,1))*10^12, dd(40,:),'linewidth',1.5); hold on %lambda=745 (109)
+    plot(tspan(1:size(Te_avg,1))*10^12, dd(118,:),'linewidth',1.5); hold on %lambda = 755(118)
+    plot(tspan(1:size(Te_avg,1))*10^12, dd(124,:),'linewidth',1.5); hold on% lambda = 766 (124)
+    plot(tspan(1:size(Te_avg,1))*10^12, dd(129,:),'linewidth',1.5); hold on% lambda = 775(129)
+    plot(tspan(1:size(Te_avg,1))*10^12, dd(131,:),'linewidth',1.5); hold on% lambda = 785 (131)
 
   %% 
    % load min_exp90
